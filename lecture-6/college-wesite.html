@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>College Navbar</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+        }
+
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background-color:#003366;
+            padding:15px 20px;
+        }
+
+        .logo{
+            color:white;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .menu{
+            display:flex;
+            gap:20px;
+        }
+
+        .menu a{
+            color:rgb(255, 255, 255);
+            text-decoration:none;
+            padding:8px;
+        }
+
+        .menu a:hover{
+            background-color:white;
+            color:#003366;
+            border-radius:5px;
+        }
+
+        @media (max-width:600px){
+            .navbar{
+                flex-direction:column;
+            }
+
+            .menu{
+                flex-direction:column;
+                margin-top:10px;
+                text-align:center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">College</div>
+
+        <div class="menu">
+            <a>Home</a>
+            <a>Courses</a>
+            <a>Faculty</a>
+            <a>Placements</a>
+            <a>Contact</a>
+        </div>
+    </div>
+
+</body>
+</html>
+</body>
+</html>
