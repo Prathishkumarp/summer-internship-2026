@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Dashboard Clone</title>
+
+    <style>
+        body{
+            margin:0;
+            font-family:Arial;
+            background-color:black;
+            color:white;
+        }
+
+        .container{
+            display:flex;
+        }
+
+        /* Sidebar */
+        .sidebar{
+            width:200px;
+            background-color:#121212;
+            height:100vh;
+            padding:20px;
+        }
+
+        .sidebar h2{
+            color:lime;
+        }
+
+        .sidebar p{
+            padding:10px 0;
+            cursor:pointer;
+        }
+
+        .sidebar p:hover{
+            color:lime;
+        }
+
+        /* Main Content */
+        .main{
+            flex:1;
+            padding:20px;
+        }
+
+        .songs{
+            display:flex;
+            flex-wrap:wrap;
+            gap:15px;
+        }
+
+        .card{
+            width:180px;
+            background-color:#1e1e1e;
+            padding:10px;
+            border-radius:10px;
+            text-align:center;
+        }
+
+        .card:hover{
+            background-color:#333;
+        }
+
+        .card img{
+            width:100%;
+            height:150px;
+            border-radius:10px;
+        }
+
+        @media(max-width:700px){
+            .container{
+                flex-direction:column;
+            }
+
+            .sidebar{
+                width:100%;
+                height:auto;
+            }
+
+            .songs{
+                justify-content:center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Spotify</h2>
+
+        <p> Home</p>
+        <p> Search</p>
+        <p> Library</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <h2>Trending Songs</h2>
+
+        <div class="songs">
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/albums/kGxbn03y4r/xbnxagxQ3y/size_l.jpg">
+                <h4> Karuppu</h4>
+                <p>Sai Abhyankkar</p>
+            </div>
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/albums/NOXWVRgWkq/XWVyQYqR3k/size_m.jpg">
+                <h4>Oorum Blood</h4>
+                <p>Sai Abhyankkar</p>
+            </div>
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/albums/P7m3GNKqxo/m3G59a2Gbq/size_m_1765951390.jpg">
+                <h4>Dhurandhar</h4>
+                <p>Album •Shashwat Sachdev, HanuMankind</p>
+            </div>
+
+        
+            
+        </div>
+
+        <br>
+
+        <h2>Recently Played</h2>
+
+        <div class="songs">
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/albums/DwPKOxB3qV/PKOk1k5aKq/size_m_1736172595.jpg">
+                <h4> Certified Self Made</h4>
+                <p>Hiphop Tamizha</p>
+            </div>
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/albums/9En3pqeWXD/En3pxlAl3X/size_l.webp">
+                <h4> Aaluma Doluma</h4>
+                <p>Anirudh Ravichander</p>
+            </div>
+
+            <div class="card">
+                <img src="https://a10.gaanacdn.com/gn_img/artists/XYybzrb2gz/XYybzjPb2g/size_l_1717411607.webp">
+                <h4>SONG : Thalaivar</h4>
+                <p>Yuvan Shankar Raja</p>
+
+</div>
+
+</body>
+</html>
+</body>
+</html>

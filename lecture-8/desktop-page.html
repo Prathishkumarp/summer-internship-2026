@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Product Page</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background-color:#f2f2f2;
+        }
+
+        /* Navbar */
+        .navbar{
+            background-color:#131921;
+            color:white;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 20px;
+            flex-wrap:wrap;
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .search-bar{
+            display:flex;
+            width:50%;
+        }
+
+        .search-bar input{
+            width:100%;
+            padding:10px;
+            border:none;
+        }
+
+        .search-bar button{
+            padding:10px 15px;
+            border:none;
+            background:orange;
+            cursor:pointer;
+        }
+
+        /* Hero Section */
+        .hero{
+            background:linear-gradient(to right, orange, #ff6600);
+            color:white;
+            text-align:center;
+            padding:70px 20px;
+        }
+
+        .hero h1{
+            font-size:45px;
+            margin-bottom:15px;
+        }
+
+        .hero p{
+            font-size:18px;
+            margin-bottom:20px;
+        }
+
+        .hero-btn{
+            background:white;
+            color:#ff6600;
+            border:none;
+            padding:12px 25px;
+            border-radius:25px;
+            cursor:pointer;
+            font-size:16px;
+            transition:0.3s;
+        }
+
+        .hero-btn:hover{
+            transform:scale(1.1);
+        }
+
+        /* Category Menu */
+        .menu{
+            background-color:#232f3e;
+            display:flex;
+            justify-content:center;
+            flex-wrap:wrap;
+            padding:10px;
+        }
+
+        .menu a{
+            color:white;
+            text-decoration:none;
+            margin:10px;
+        }
+
+        .menu a:hover{
+            color:orange;
+        }
+
+        /* Product Section */
+        .products{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:20px;
+            padding:30px;
+        }
+
+        .card{
+            width:220px;
+            background:white;
+            border-radius:15px;
+            padding:15px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 5px 15px gray;
+        }
+
+        .card img{
+            width:100%;
+            height:180px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+        .card h3{
+            margin-top:10px;
+        }
+
+        .price{
+            color:green;
+            font-weight:bold;
+            margin-top:10px;
+        }
+
+        /* Responsive Design */
+        @media(max-width:768px){
+
+            .navbar{
+                flex-direction:column;
+                gap:10px;
+            }
+
+            .search-bar{
+                width:100%;
+            }
+
+            .hero h1{
+                font-size:30px;
+            }
+
+            .card{
+                width:90%;
+                max-width:300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Amazon</div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Search Products">
+            <button>Search</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Welcome to Amazon Store</h1>
+        <p>Discover Amazing Deals Every Day</p>
+        <button class="hero-btn">Shop Now</button>
+    </div>
+
+    <!-- Category Menu -->
+    <div class="menu">
+        <a href="#">Electronics</a>
+        <a href="#">Fashion</a>
+        <a href="#">Mobiles</a>
+        <a href="#">Books</a>
+        <a href="#">Home</a>
+        <a href="#">Sports</a>
+    </div>
+
+    <!-- Product Cards -->
+    <div class="products">
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.VKQ__hT5n6GNtqYvzlItVgHaHa?w=205&h=205&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Headphones</h3>
+            <p class="price">₹1,400</p>
+        </div>
+
+        <div class="card">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.wDKEe-CXI8dstzXMFxd3AwHaG8?cb=thfvnextfalcon2&pid=ImgDet&w=197&h=184&c=7&dpr=1.3&o=7&rm=3">
+            <h3>Smart Watch</h3>
+            <p class="price">₹3,499</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.RVnmAXcSZBH0Gj17sE6U_gHaHa?w=169&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Laptop</h3>
+            <p class="price">₹67,000</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th?q=Samsung+Galaxy+Mobile&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&dpr=1.3&pid=InlineBlock&rm=3&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247">
+            <h3>Mobile Phone</h3>
+            <p class="price">₹79,999</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.-AvAI8-g4HcXpHpJ9mee8QHaHa?w=211&h=212&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Keyboard</h3>
+            <p class="price">₹1,500</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.0-KIptBohQtxzXbKAKqUFAHaFM?w=277&h=194&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Mouse</h3>
+            <p class="price">₹999</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.Lj71c6zCYaWa2J9m7dIMBgHaEf?w=304&h=184&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Speaker</h3>
+            <p class="price">₹1,299</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.p-noV7XuMek1TFwTz_m22wAAAA?w=173&h=180&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Camera</h3>
+            <p class="price">₹50,000</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.kZydGQJP0uRfeg0H5EP_TAHaHa?w=193&h=193&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Bag</h3>
+            <p class="price">₹899</p>
+        </div>
+
+        <div class="card">
+            <img src="https://thfvnext.bing.com/th/id/OIP.1CXEhrUpLSwpzo4plBJqJQHaFM?w=186&h=130&c=7&r=0&o=7&cb=thfvnextfalcon2&dpr=1.3&pid=1.7&rm=3">
+            <h3>Shoes</h3>
+            <p class="price">₹4,500</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+</body>
+</html>
