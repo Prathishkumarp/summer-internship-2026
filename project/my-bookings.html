@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bookings</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.navbar{
+    background:#0d6efd;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    background:red;
+    padding:8px 15px;
+    border-radius:5px;
+}
+
+.container{
+    width:95%;
+    margin:20px auto;
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+table th,
+table td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+}
+
+.approved{
+    background:#198754;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.pending{
+    background:#ffc107;
+    color:black;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.rejected{
+    background:#dc3545;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>📋 My Bookings</h2>
+    <a href="dashboard.html">Back</a>
+</div>
+
+<div class="container">
+
+
+<h2>Booking History</h2>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hotel Name</th>
+            <th>Customer Name</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody id="bookingTable"></tbody>
+
+</table>
+
+
+</div>
+
+<script>
+
+loadBookings();
+
+function loadBookings(){
+
+    fetch("http://localhost:5000/bookings")
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        let html = "";
+
+        data.forEach(booking => {
+
+            let statusClass = "";
+
+            if(booking.status === "Approved"){
+                statusClass = "approved";
+            }
+            else if(booking.status === "Rejected"){
+                statusClass = "rejected";
+            }
+            else{
+                statusClass = "pending";
+            }
+            const bookingDate =
+new Date(booking.booking_date)
+.toLocaleDateString("en-GB");
+          html += `
+<tr>
+    <td>${booking.id}</td>
+    <td>${booking.hotel_name}</td>
+    <td>${booking.customer_name}</td>
+    <td>${bookingDate}</td>
+    <td>
+    <span class="${statusClass}">
+        ${booking.status}
+    </span>
+</td>
+    <td>
+
+${booking.status === "Pending"
+?
+`<button onclick="cancelBooking(${booking.id})">
+    Cancel
+</button>`
+:
+`<span>No Action</span>`
+}
+
+</td>
+    
+</tr>
+`;
+
+        });
+
+        document.getElementById("bookingTable").innerHTML = html;
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

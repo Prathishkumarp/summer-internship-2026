@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Bookings</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#0d6efd;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h2{
+    font-size:28px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    background:red;
+    padding:10px 20px;
+    border-radius:6px;
+}
+
+/* Container */
+
+.container{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h1{
+    margin-bottom:10px;
+}
+
+.title p{
+    color:gray;
+}
+
+/* Booking Cards */
+
+.booking-card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.booking-card:hover{
+    transform:translateY(-5px);
+}
+
+.booking-card h3{
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+.booking-card p{
+    margin-bottom:10px;
+    color:#444;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:6px;
+    color:white;
+    font-weight:bold;
+}
+
+.pending{
+    background:#ffc107;
+    color:black;
+}
+
+.approved{
+    background:#198754;
+}
+
+.rejected{
+    background:#dc3545;
+}
+
+.cancel-btn{
+    margin-top:10px;
+    padding:10px 15px;
+    border:none;
+    background:red;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.cancel-btn:hover{
+    background:#c82333;
+}
+
+/* Footer */
+
+footer{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+
+<h2>📖 My Bookings</h2>
+
+<a href="dashboard.html">⬅ Back</a>
+
+
+</div>
+
+<div class="container">
+
+
+<div class="title">
+    <h1>Your Hotel Bookings</h1>
+    <p>Track all your hotel reservations</p>
+</div>
+
+<div id="bookingContainer"></div>
+
+
+</div>
+
+<footer>
+    © 2026 Hotel Booking Management System | Developed by Prathish Kumar
+</footer>
+
+<script>
+
+loadBookings();
+
+function loadBookings(){
+
+fetch("http://localhost:5000/bookings")
+
+.then(response => response.json())
+
+.then(data => {
+
+    let output = "";
+
+    data.forEach(booking => {
+
+        let statusClass = "pending";
+
+        if(booking.status === "Approved"){
+            statusClass = "approved";
+        }
+
+        if(booking.status === "Rejected"){
+            statusClass = "rejected";
+        }
+
+        output += `
+
+        <div class="booking-card">
+
+            <h3>🏨 ${booking.hotel_name}</h3>
+
+            <p>
+                <strong>Customer:</strong>
+                ${booking.customer_name}
+            </p>
+
+            <p>
+                <strong>Booking Date:</strong>
+                ${new Date(booking.booking_date).toLocaleDateString()}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span class="status ${statusClass}">
+                    ${booking.status}
+                </span>
+            </p>
+
+            <button
+                class="cancel-btn"
+                onclick="cancelBooking(${booking.id})">
+
+                Cancel Booking
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("bookingContainer").innerHTML = output;
+
+})
+
+.catch(error => {
+
+    console.log(error);
+
+    alert("Failed To Load Bookings");
+
+});
+
+}
+
+function cancelBooking(id){
+
+    if(!confirm("Are you sure you want to cancel this booking?")){
+        return;
+    }
+
+    fetch(`http://localhost:5000/cancel-booking/${id}`,{
+
+        method:"DELETE"
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        alert(data);
+
+        loadBookings();
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Cancellation Failed");
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Booking Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+.navbar{
+    background:#0d6efd;
+    color:white;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.navbar h2{
+    font-size:28px;
+}
+
+.navbar a{
+    background:red;
+    color:white;
+    text-decoration:none;
+    padding:10px 20px;
+    border-radius:6px;
+}
+.navbar div{
+    display:flex;
+    gap:10px;
+}
+
+.hero{
+    background:white;
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero h1{
+    margin-bottom:15px;
+    font-size:42px;
+}
+
+.hero p{
+    color:gray;
+    margin-bottom:20px;
+}
+
+.hero input{
+    width:300px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.hero button{
+    padding:12px 20px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.hotels{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    width:320px;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin-bottom:8px;
+    color:#555;
+}
+
+.card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#198754;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.card button:hover{
+    background:#157347;
+}
+
+footer{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+
+    .navbar{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .hero input{
+        width:100%;
+        max-width:300px;
+        margin-bottom:10px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>🏨 Hotel Booking System</h2>
+
+    <div>
+
+        <a href="my-bookings.html">My Bookings</a>
+
+        <a href="login.html">Logout</a>
+
+    </div>
+
+</div>
+    <h2>🏨 Hotel Booking System</h2>
+    <a href="login.html">Logout</a>
+</div>
+
+<div class="hero">
+    <h1>Welcome to Hotel Booking Dashboard</h1>
+    <p>Find and Book Your Perfect Stay</p>
+
+
+<input type="text"
+id="searchInput"
+placeholder="Search Hotel Name">
+
+<input type="text"
+id="locationInput"
+placeholder="Search Location">
+
+<input type="number"
+id="priceInput"
+placeholder="Max Price">
+
+<button onclick="searchHotels()">
+Search
+</button>
+
+</div>
+
+<div class="hotels" id="hotelContainer"></div>
+
+<script>
+
+let allHotels = [];
+
+loadHotels();
+
+function loadHotels(){
+
+    fetch("http://localhost:5000/hotels")
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        allHotels = data;
+
+        displayHotels(data);
+
+    })
+
+    .catch(err => {
+
+        console.log(err);
+
+        alert("Failed to Load Hotels");
+
+    });
+
+}
+
+function displayHotels(hotels){
+
+    let html = "";
+
+    hotels.forEach(hotel => {
+
+        html += `
+        <div class="card">
+
+            <img src="${hotel.image_url}"
+onerror="this.src='https://via.placeholder.com/320x220?text=Hotel+Image'"
+alt="Hotel">
+
+            <div class="card-content">
+
+                <h3>${hotel.hotel_name}</h3>
+
+                <p>📍 ${hotel.location}</p>
+
+                <p>💰 ₹${hotel.price} / Night</p>
+
+                <button onclick="bookHotel(${hotel.id}, '${hotel.hotel_name}')">
+                    Book Now
+                </button>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+    document.getElementById("hotelContainer").innerHTML = html;
+
+}
+
+function searchHotels(){
+
+const hotelName =
+document.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const location =
+document.getElementById("locationInput")
+.value
+.toLowerCase();
+
+const maxPrice =
+document.getElementById("priceInput")
+.value;
+
+const cards =
+document.querySelectorAll(".card");
+
+cards.forEach(card => {
+
+const cardHotel =
+card.querySelector("h3")
+.innerText
+.toLowerCase();
+
+const cardLocation =
+card.querySelectorAll("p")[0]
+.innerText
+.toLowerCase();
+
+const cardPrice =
+parseInt(
+card.querySelectorAll("p")[1]
+.innerText
+.replace(/[^\d]/g,"")
+);
+
+const hotelMatch =
+cardHotel.includes(hotelName);
+
+const locationMatch =
+cardLocation.includes(location);
+
+const priceMatch =
+maxPrice === ""
+||
+cardPrice <= maxPrice;
+
+if(
+hotelMatch
+&&
+locationMatch
+&&
+priceMatch
+){
+card.style.display = "block";
+}
+else{
+card.style.display = "none";
+}
+
+});
+
+}
+
+    fetch("http://localhost:5000/book",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            hotel_id:hotelId,
+            hotel_name:hotelName,
+            customer_name:customerName
+        })
+    })
+    .then(res => res.text())
+    .then(data => {
+        alert(data);
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Booking Failed");
+    });
+
+
+
+    const search =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase();
+
+    const filteredHotels = allHotels.filter(hotel =>
+        hotel.hotel_name.toLowerCase().includes(search)
+    );
+
+    displayHotels(filteredHotels);
+
+
+
+function bookHotel(hotelId, hotelName){
+
+    const customerName = prompt("Enter Your Name");
+
+    if(!customerName){
+        return;
+    }
+
+    fetch("http://localhost:5000/book",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            hotel_id:hotelId,
+            hotel_name:hotelName,
+            customer_name:customerName
+
+        })
+
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+
+        alert(data);
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Booking Failed");
+
+    });
+
+}
+
+</script>
+
+<footer>
+    <p>
+        © 2026 Hotel Booking Management System |
+        Developed by Prathish Kumar
+    </p>
+</footer>
+
+</body>
+</html>
