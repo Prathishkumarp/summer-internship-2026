@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking System</title>
+
+    <style>
+       *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f8f9fa;
+}
+
+/* NAVBAR */
+
+.navbar{
+
+position:fixed;
+
+top:0;
+
+width:100%;
+
+padding:18px 8%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:rgba(0,0,0,.55);
+
+backdrop-filter:blur(10px);
+
+z-index:1000;
+
+}
+
+.logo{
+
+font-size:30px;
+
+font-weight:bold;
+
+color:white;
+
+}
+
+.logo span{
+
+color:#ffd43b;
+
+}
+
+nav ul{
+
+display:flex;
+
+list-style:none;
+
+gap:35px;
+
+}
+
+nav ul li a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:17px;
+
+transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+color:#ffd43b;
+
+}
+
+.nav-buttons a{
+
+text-decoration:none;
+
+padding:12px 24px;
+
+border-radius:40px;
+
+margin-left:12px;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.login-btn{
+
+background:white;
+
+color:#0d6efd;
+
+}
+
+.register-btn{
+
+background:#ffd43b;
+
+color:black;
+
+}
+
+.nav-buttons a:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* HERO */
+
+.hero{
+
+height:100vh;
+
+background:
+
+linear-gradient(rgba(0,0,0,.55),
+
+rgba(0,0,0,.55)),
+
+url("https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800");
+
+background-size:cover;
+
+background-position:center;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.overlay{
+
+text-align:center;
+
+color:white;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:65px;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+font-size:22px;
+
+margin-bottom:35px;
+
+}
+
+.hero-buttons a{
+
+text-decoration:none;
+
+padding:15px 35px;
+
+border-radius:50px;
+
+margin:10px;
+
+display:inline-block;
+
+font-size:18px;
+
+transition:.3s;
+
+}
+
+.primary-btn{
+
+background:#0d6efd;
+
+color:white;
+
+}
+
+.secondary-btn{
+
+background:#ffd43b;
+
+color:black;
+
+}
+
+.hero-buttons a:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.3);
+
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.navbar{
+
+flex-direction:column;
+
+padding:20px;
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+margin:20px 0;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+}
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+/* ===========================
+      SECTION TITLE
+=========================== */
+
+.section-title{
+
+text-align:center;
+
+padding:80px 20px 50px;
+
+}
+
+.section-title h2{
+
+font-size:42px;
+
+color:#0f172a;
+
+margin-bottom:15px;
+
+}
+
+.section-title p{
+
+font-size:18px;
+
+color:#555;
+
+max-width:700px;
+
+margin:auto;
+
+line-height:1.7;
+
+}
+
+/* ===========================
+       FEATURES
+=========================== */
+
+.features{
+
+padding:80px 8%;
+
+background:white;
+
+}
+
+.feature-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+}
+
+.feature-card{
+
+background:#ffffff;
+
+padding:35px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.4s;
+
+}
+
+.feature-card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.icon{
+
+font-size:60px;
+
+margin-bottom:20px;
+
+}
+
+.feature-card h3{
+
+font-size:24px;
+
+margin-bottom:15px;
+
+color:#0d6efd;
+
+}
+
+.feature-card p{
+
+color:#666;
+
+line-height:1.8;
+
+font-size:16px;
+
+}
+/* ===========================
+      FEATURED HOTELS
+=========================== */
+
+.featured-hotels{
+
+padding:90px 8%;
+
+background:#f8f9fa;
+
+}
+
+.hotel-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:35px;
+
+margin-top:40px;
+
+}
+
+.hotel-card{
+
+background:white;
+
+border-radius:18px;
+
+overflow:hidden;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.4s;
+
+}
+
+.hotel-card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.18);
+
+}
+
+.hotel-card img{
+
+width:100%;
+
+height:240px;
+
+object-fit:cover;
+
+}
+
+.hotel-info{
+
+padding:22px;
+
+}
+
+.hotel-info h3{
+
+font-size:24px;
+
+margin-bottom:10px;
+
+color:#0f172a;
+
+}
+
+.location{
+
+color:#555;
+
+margin-bottom:10px;
+
+}
+
+.rating{
+
+color:#ff9800;
+
+font-weight:bold;
+
+margin-bottom:12px;
+
+}
+
+.price{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#0d6efd;
+
+margin-bottom:20px;
+
+}
+
+.book-btn{
+
+display:inline-block;
+
+width:100%;
+
+text-align:center;
+
+padding:14px;
+
+background:#0d6efd;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:8px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.book-btn:hover{
+
+background:#0b5ed7;
+
+}
+/* ===========================
+        STATISTICS
+=========================== */
+
+.stats{
+
+padding:80px 8%;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+background:#0d6efd;
+
+color:white;
+
+text-align:center;
+
+}
+
+.stat-box{
+
+padding:30px;
+
+}
+
+.stat-box h2{
+
+font-size:48px;
+
+margin-bottom:10px;
+
+}
+
+.stat-box p{
+
+font-size:18px;
+
+}
+
+
+/* ===========================
+      HOW IT WORKS
+=========================== */
+
+.how-it-works{
+
+padding:90px 8%;
+
+background:white;
+
+}
+
+.steps{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.step-card{
+
+background:#f8f9fa;
+
+padding:35px;
+
+text-align:center;
+
+border-radius:18px;
+
+transition:.3s;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.step-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.step-number{
+
+width:65px;
+
+height:65px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#0d6efd;
+
+color:white;
+
+font-size:28px;
+
+font-weight:bold;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+margin-bottom:20px;
+
+}
+
+.step-card h3{
+
+margin-bottom:15px;
+
+color:#0d6efd;
+
+}
+
+.step-card p{
+
+color:#666;
+
+line-height:1.7;
+
+}
+/* ===========================
+      TESTIMONIALS
+=========================== */
+
+.testimonials{
+
+padding:90px 8%;
+
+background:#f8f9fa;
+
+}
+
+.testimonial-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.testimonial-card{
+
+background:white;
+
+padding:35px;
+
+border-radius:18px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+text-align:center;
+
+}
+
+.testimonial-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.testimonial-card p{
+
+font-style:italic;
+
+line-height:1.8;
+
+margin-bottom:20px;
+
+color:#555;
+
+}
+
+.testimonial-card h4{
+
+color:#ff9800;
+
+margin-bottom:10px;
+
+}
+
+.testimonial-card span{
+
+color:#777;
+
+}
+
+/* ===========================
+        CONTACT
+=========================== */
+
+.contact{
+
+padding:90px 8%;
+
+background:white;
+
+}
+
+.contact-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.contact-card{
+
+background:#f8f9fa;
+
+padding:35px;
+
+border-radius:18px;
+
+text-align:center;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.contact-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.contact-card h3{
+
+color:#0d6efd;
+
+margin-bottom:15px;
+
+}
+
+.contact-card p{
+
+color:#555;
+
+line-height:1.8;
+
+}
+/* ===========================
+            FOOTER
+=========================== */
+
+.footer{
+
+background:#0f172a;
+
+color:white;
+
+padding:70px 8% 20px;
+
+}
+
+.footer-container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:40px;
+
+}
+
+.footer-box h2,
+.footer-box h3{
+
+margin-bottom:20px;
+
+color:#ffd43b;
+
+}
+
+.footer-box p{
+
+line-height:1.8;
+
+color:#ddd;
+
+margin-bottom:10px;
+
+}
+
+.footer-box a{
+
+display:block;
+
+text-decoration:none;
+
+color:#ddd;
+
+margin-bottom:12px;
+
+transition:.3s;
+
+}
+
+.footer-box a:hover{
+
+color:#ffd43b;
+
+padding-left:10px;
+
+}
+
+.footer hr{
+
+margin:40px 0 20px;
+
+border:none;
+
+height:1px;
+
+background:#444;
+
+}
+
+.copyright{
+
+text-align:center;
+
+color:#ccc;
+
+font-size:15px;
+
+}
+
+/* ===========================
+      BACK TO TOP
+=========================== */
+
+.top-btn{
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:50px;
+
+height:50px;
+
+background:#0d6efd;
+
+color:white;
+
+text-decoration:none;
+
+font-size:24px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+box-shadow:0 8px 20px rgba(0,0,0,.3);
+
+transition:.3s;
+
+}
+
+.top-btn:hover{
+
+background:#0b5ed7;
+
+transform:translateY(-5px);
+
+}
+
+/* ===========================
+       RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:38px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+.section-title h2{
+
+font-size:32px;
+
+}
+
+.navbar{
+
+padding:15px;
+
+flex-direction:column;
+
+}
+
+nav ul{
+
+flex-direction:column;
+
+align-items:center;
+
+gap:15px;
+
+margin:20px 0;
+
+}
+
+.nav-buttons{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.hero-buttons a{
+
+width:250px;
+
+text-align:center;
+
+}
+
+}
+
+
+
+    </style>
+</head>
+<body>
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        🏨 <span>Hotel</span>Book
+    </div>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="#">Home</a></li>
+
+            <li><a href="#features">Features</a></li>
+
+            <li><a href="#hotels">Hotels</a></li>
+
+            <li><a href="#about">About</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+    </nav>
+
+    <div class="nav-buttons">
+
+        <a href="login.html" class="login-btn">
+            Login
+        </a>
+
+        <a href="register.html" class="register-btn">
+            Register
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="overlay">
+
+<div class="hero-content">
+
+<h1>
+Find Your Perfect Stay
+</h1>
+
+<p>
+
+Luxury Hotels • Best Prices • Instant Booking
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="dashboard.html" class="primary-btn">
+Explore Hotels
+</a>
+
+<a href="register.html" class="secondary-btn">
+Create Account
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= FEATURES ================= -->
+
+<section class="features" id="features">
+
+    <div class="section-title">
+        <h2>Why Choose HotelBook?</h2>
+        <p>
+            We provide the best hotel booking experience with premium services,
+            trusted hotels, and secure reservations.
+        </p>
+    </div>
+
+    <div class="feature-container">
+
+        <div class="feature-card">
+
+            <div class="icon">
+                🏨
+            </div>
+
+            <h3>Luxury Hotels</h3>
+
+            <p>
+                Choose from hundreds of premium hotels across India with world-class facilities.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="icon">
+                ⚡
+            </div>
+
+            <h3>Instant Booking</h3>
+
+            <p>
+                Book your favorite hotel within seconds without any complicated process.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="icon">
+                💰
+            </div>
+
+            <h3>Affordable Prices</h3>
+
+            <p>
+                Enjoy competitive prices and exclusive offers on every hotel booking.
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <div class="icon">
+                🔒
+            </div>
+
+            <h3>Secure Booking</h3>
+
+            <p>
+                Your booking details and personal information are protected with secure technology.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= FEATURED HOTELS ================= -->
+
+<section class="featured-hotels" id="hotels">
+
+    <div class="section-title">
+        <h2>Featured Hotels</h2>
+        <p>
+            Explore our most popular hotels offering luxury, comfort, and unforgettable experiences.
+        </p>
+    </div>
+
+    <div class="hotel-container">
+
+        <!-- Hotel 1 -->
+
+        <div class="hotel-card">
+
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900" alt="Luxury Palace Hotel">
+
+            <div class="hotel-info">
+
+                <h3>Luxury Palace Hotel</h3>
+
+                <p class="location">📍 Chennai</p>
+
+                <p class="rating">⭐⭐⭐⭐⭐ 4.9</p>
+
+                <p class="price">₹5,000 / Night</p>
+
+                <a href="dashboard.html" class="book-btn">
+                    Book Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Hotel 2 -->
+
+        <div class="hotel-card">
+
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900" alt="Sea View Resort">
+
+            <div class="hotel-info">
+
+                <h3>Sea View Resort</h3>
+
+                <p class="location">📍 Goa</p>
+
+                <p class="rating">⭐⭐⭐⭐⭐ 4.8</p>
+
+                <p class="price">₹4,000 / Night</p>
+
+                <a href="dashboard.html" class="book-btn">
+                    Book Now
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Hotel 3 -->
+
+        <div class="hotel-card">
+
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900" alt="Mountain Retreat">
+
+            <div class="hotel-info">
+
+                <h3>Mountain Retreat</h3>
+
+                <p class="location">📍 Ooty</p>
+
+                <p class="rating">⭐⭐⭐⭐⭐ 4.7</p>
+
+                <p class="price">₹6,000 / Night</p>
+
+                <a href="dashboard.html" class="book-btn">
+                    Book Now
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= STATISTICS ================= -->
+
+<section class="stats">
+
+    <div class="stat-box">
+        <h2>100+</h2>
+        <p>Luxury Hotels</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>2500+</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>5000+</h2>
+        <p>Bookings Completed</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>50+</h2>
+        <p>Cities Covered</p>
+    </div>
+
+</section>
+<!-- ================= TESTIMONIALS ================= -->
+
+<section class="testimonials">
+
+    <div class="section-title">
+        <h2>What Our Customers Say</h2>
+        <p>Trusted by thousands of happy travellers across India.</p>
+    </div>
+
+    <div class="testimonial-container">
+
+        <div class="testimonial-card">
+            <p>
+                "Booking was incredibly easy. The hotel was exactly as shown, and the service was excellent!"
+            </p>
+            <h4>⭐⭐⭐⭐⭐</h4>
+            <h3>sai kadavul</h3>
+            <span>Chennai</span>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                "A beautiful interface and hassle-free booking experience. Highly recommended."
+            </p>
+            <h4>⭐⭐⭐⭐⭐</h4>
+            <h3>Ajith kumar </h3>
+            <span>Kochi</span>
+        </div>
+
+        <div class="testimonial-card">
+            <p>
+                "Affordable prices and instant confirmation made my vacation stress-free."
+            </p>
+            <h4>⭐⭐⭐⭐⭐</h4>
+            <h3>dhanush</h3>
+            <span>Bengaluru</span>
+        </div>
+
+    </div>
+    <!-- ================= CONTACT ================= -->
+
+<section class="contact" id="contact">
+
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We're always here to help you with your bookings.</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-card">
+
+            <h3>📍 Address</h3>
+
+            <p>
+                 123, Anna Nagar, Chennai, Tamil Nadu, 600040, India.<br>
+                
+            </p>
+
+        </div>
+
+        <div class="contact-card">
+
+            <h3>📞 Phone</h3>
+
+            <p>
+                +91 6379191454
+            </p>
+
+        </div>
+
+        <div class="contact-card">
+
+            <h3>📧 Email</h3>
+
+            <p>
+                support@hotelbook.com
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</section>
+
+    <!-- Footer -->
+    <!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-box">
+
+            <h2>🏨 HotelBook</h2>
+
+            <p>
+                HotelBook is a modern hotel booking platform that helps customers
+                find, compare and book hotels quickly, securely and conveniently.
+            </p>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Quick Links</h3>
+
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#hotels">Hotels</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+
+        </div>
+
+        <div class="footer-box">
+
+            <h3>Contact</h3>
+
+            <p>📍 Chennai, Tamil Nadu</p>
+
+            <p>📞 +91 98765 43210</p>
+
+            <p>📧 support@hotelbook.com</p>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="copyright">
+
+        © 2026 Hotel Booking Management System |
+        Developed by <strong>Prathish Kumar</strong>
+
+    </div>
+
+</footer>
+
+<!-- Back To Top -->
+
+<a href="#" class="top-btn">
+⬆
+</a>
+
+</body>
+</html>
